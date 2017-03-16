@@ -84,6 +84,9 @@ function _exposeIosHtml5DragDropShim(config) {
       }
     },
     move: function(event) {
+      if (!this.dragImage) {
+        return;
+      }
       event.preventDefault();
       var pageXs = [], pageYs = [];
       [].forEach.call(event.changedTouches, function(touch) {
@@ -125,6 +128,10 @@ function _exposeIosHtml5DragDropShim(config) {
       }
     },
     dragend: function(event) {
+
+      if (!this.el) {
+        return;
+      }
 
       // we'll dispatch drop if there's a target, then dragEnd.
       // drop comes first http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#drag-and-drop-processing-model
